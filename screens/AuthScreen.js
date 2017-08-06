@@ -23,7 +23,7 @@ export default class AuthScreen extends Component {
 
 const styles = StyleSheet.create({
   defaut: {
-    backgroundColor: '#e67e22',
+    // backgroundColor: '#e67e22',
     flex: 1,
   },
 });

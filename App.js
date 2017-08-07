@@ -15,7 +15,7 @@ export default class App extends React.Component {
     const MainNavigator = TabNavigator({
       welcome: { screen: WelcomeScreen },
       auth: { screen: AuthScreen },
-      main: {
+      map: {
         screen: TabNavigator({
           map: { screen: MapScreen },
           deck: { screen: DeckScreen },
@@ -23,17 +23,27 @@ export default class App extends React.Component {
             screen: StackNavigator({
               review: { screen: ReviewScreen },
               settings: { screen: SettingsScreen },
+            },
+            {
+              navigationOptions: {
+                tabBarVisible: false,
+              },
             }),
           },
         },
         {
-          tabBarPosition: 'bottom',
+          // tabBarPosition: 'bottom',
+          // swipeEnabled: true,
         }
         ),
       },
     }, {
+      navigationOptions: {
+        tabBarVisible: false,
+      },
       swipeEnabled: false,
       tabBarPosition: 'bottom',
+      lazy: true,
       // tabBarComponent: TabBarTop,
     },
     );
@@ -53,6 +63,6 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: '#fff',
     // justifyContent: 'center',
-    // marginTop: Platform.OS === 'android' ? 24 : 0,
+    marginTop: Platform.OS === 'android' ? 24 : 0,
   },
 });

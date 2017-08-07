@@ -12,7 +12,7 @@ export default class ReviewScreen extends Component {
       onPress={() => navigation.navigate('settings')}
     />,
     headerStyle: {
-      marginTop: Platform.OS === 'android' ? 24 : 0,
+      // marginTop: Platform.OS === 'android' ? 24 : 0,
     },
   });
   state = { }

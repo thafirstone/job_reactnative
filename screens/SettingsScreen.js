@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
+import { connect } from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Button } from 'react-native-elements';
+import { clearLikedJobs } from './../actions';
 
-export default class SettingsScreen extends Component {
+class SettingsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Settings',
-    headerStyle: {
-      // marginTop: Platform.OS === 'android' ? 24 : 0,
-    },
+    // headerStyle: {
+    //   // marginTop: Platform.OS === 'android' ? 24 : 0,
+    // },
     tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons
         name="settings"
@@ -19,15 +22,17 @@ export default class SettingsScreen extends Component {
   state = { }
   render() {
     return (
-      <View>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
-        <Text>SettingsScreen</Text>
+      <View style={{ marginTop: 20 }}>
+        <Button
+          title='Reset Liked Jobs'
+          large
+          icon={{ name: 'delete-forever' }}
+          backgroundColor="#F44336"
+          onPress={this.props.clearLikedJobs}
+        />
       </View>
     );
   }
 }
+
+export default connect(null, { clearLikedJobs })(SettingsScreen);

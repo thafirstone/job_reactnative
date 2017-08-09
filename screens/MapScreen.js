@@ -12,6 +12,7 @@ import * as actions from '../actions';
 
 class MapScreen extends Component {
   static navigationOptions = {
+    title: 'Map',
     tabBarIcon: ({ tintColor }) => (
       <MaterialCommunityIcons
         name="google-maps"

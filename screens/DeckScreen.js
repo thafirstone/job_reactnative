@@ -5,24 +5,29 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { MapView } from 'expo';
 import { Card, Button } from 'react-native-elements';
 import Swipe from './../components/Swipe';
+import * as actions from './../actions';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 class DeckScreen extends Component {
-      static navigationOptions = {
-        tabBarIcon: ({ tintColor }) => (
-          <MaterialCommunityIcons
-            name="database"
-            size={26}
-            style={{ color: tintColor }}
-          />
-        ),
-      };
+  static navigationOptions = {
+    title: 'Jobs',
+    tabBarIcon: ({ tintColor }) => (
+      <MaterialCommunityIcons
+        name="file-document"
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
+  };
   state = { }
   // componentWillReceiveProps(nextProps) {
   //   console.log('mise à jour des props');
   //   console.log(nextProps.jobs);
   // }
+  componentDidMount() {
+    console.log(this.props.navigation);
+  }
   renderCard(job) {
     const initialRegion = {
       longitude: job.longitude,
@@ -51,11 +56,18 @@ class DeckScreen extends Component {
     );
   }
 
-  renderNoMoreCards() {
-    return (
-      <Card title='No more jobs' />
-    );
-  }
+  renderNoMoreCards = () => (
+    <Card title='No more jobs'>
+      <Button
+        title='Back To Map'
+        large
+        icon={{ name: 'my-location' }}
+        backgroundColor="#03A9F4"
+        onPress={() => this.props.navigation.navigate('map')}
+      />
+
+    </Card>
+  )
   render() {
     return (
       <View style={{ marginTop: 10 }}>
@@ -63,6 +75,7 @@ class DeckScreen extends Component {
           data={this.props.jobs}
           renderCard={this.renderCard}
           renderNoMoreCards={this.renderNoMoreCards}
+          onSwipeRight={job => this.props.likeJob(job)}
           keyProp="jobkey"
         />
       </View>
@@ -80,5 +93,5 @@ const styles = {
 function mapStateToProps({ job }) {
   return { jobs: job.results };
 }
-export default connect(mapStateToProps)(DeckScreen);
+export default connect(mapStateToProps, actions)(DeckScreen);
 

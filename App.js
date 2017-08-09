@@ -29,6 +29,10 @@ export default class App extends React.Component {
             {
               navigationOptions: {
                 tabBarVisible: true,
+                headerTintColor: 'white',
+                headerStyle: {
+                  backgroundColor: '#009688',
+                },
               },
             }),
           },
@@ -37,11 +41,11 @@ export default class App extends React.Component {
           tabBarOptions: {
             activeTintColor: 'white',
             showIcon: true,
-            showLabel: false,
-            inactiveTintColor: '#bdc3c7',
+            showLabel: true,
+            inactiveTintColor: '#7f8c8d',
             labelStyle: {
-              // fontSize: 12,
               fontWeight: 'bold',
+              fontSize: 12,
               // color: 'white',
               // textDecorationColor: 'yellow',
             },

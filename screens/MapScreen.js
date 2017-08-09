@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
-import { Button } from 'react-native-elements';
+import { Button, FormLabel, FormInput } from 'react-native-elements';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Fumi } from 'react-native-textinput-effects';
@@ -43,6 +43,30 @@ class MapScreen extends Component {
     });
   }
 
+  renderInput() {
+    return (
+      <Fumi
+        label={'Enter a job'}
+        iconClass={MaterialIcons}
+        iconName={'search'}
+        iconColor={'#f95a25'}
+        iconSize={20}
+        style={styles.SaeStyle}
+        onChangeText={(text) => this.props.jobQueryChange(text)}
+        autoCapitalize={'none'}
+        autoCorrect={false}
+      />
+    );
+  }
+  renderOtherInput() {
+    return (
+      <View style={styles.inputStyle}>
+        <FormLabel>Enter a Job</FormLabel>
+        <FormInput onChangeText={(text) => this.props.jobQueryChange(text)} />
+      </View>
+    );
+  }
+
   render() {
     if (!this.state.mapLoaded) {
       return (
@@ -60,17 +84,7 @@ class MapScreen extends Component {
         />
         <View style={styles.buttonContainer}>
 
-          <Fumi
-            label={'Enter a job'}
-            iconClass={MaterialIcons}
-            iconName={'search'}
-            iconColor={'#f95a25'}
-            iconSize={20}
-            style={styles.SaeStyle}
-            onChangeText={(text) => this.props.jobQueryChange(text)}
-            autoCapitalize={'none'}
-            autoCorrect={false}
-          />
+          {this.renderInput()}
           <Button
             large
             title="Search this area"
@@ -99,6 +113,11 @@ const styles = {
     right: 0,
   },
   SaeStyle: {
+    backgroundColor: 'white',
+    marginRight: 15,
+    marginLeft: 15,
+  },
+  inputStyle: {
     backgroundColor: 'white',
     marginRight: 15,
     marginLeft: 15,

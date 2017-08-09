@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Platform } from 'react-native';
+import { View, Text, Platform, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { MapView } from 'expo';
 import { Card, Button } from 'react-native-elements';
 import Swipe from './../components/Swipe';
+
+const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 class DeckScreen extends Component {
       static navigationOptions = {
@@ -17,10 +19,10 @@ class DeckScreen extends Component {
         ),
       };
   state = { }
-  componentWillReceiveProps(nextProps) {
-    console.log('mise à jour des props');
-    console.log(nextProps.jobs);
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log('mise à jour des props');
+  //   console.log(nextProps.jobs);
+  // }
   renderCard(job) {
     const initialRegion = {
       longitude: job.longitude,
@@ -28,8 +30,9 @@ class DeckScreen extends Component {
       latitudeDelta: 0.045,
       longitudeDelta: 0.02,
     };
+    const hauteur = Math.floor((SCREEN_HEIGHT * 5) / 7);
     return (
-      <Card title={job.jobtitle}>
+      <Card title={job.jobtitle} containerStyle={{ height: hauteur }}>
         <View style={{ height: 300 }}>
           <MapView
             scrollEnabled={false}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, Platform } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button as ElementsButton } from 'react-native-elements';
 
 export default class ReviewScreen extends Component {
@@ -14,6 +15,14 @@ export default class ReviewScreen extends Component {
     headerStyle: {
       // marginTop: Platform.OS === 'android' ? 24 : 0,
     },
+    tabBarIcon: ({ tintColor }) => (
+      <MaterialCommunityIcons
+        name="heart"
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
+
   });
   state = { }
   render() {

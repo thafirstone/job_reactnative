@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import { View, Text, Platform } from 'react-native';
 import { connect } from 'react-redux';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { MapView } from 'expo';
 import { Card, Button } from 'react-native-elements';
 import Swipe from './../components/Swipe';
 
 class DeckScreen extends Component {
+      static navigationOptions = {
+        tabBarIcon: ({ tintColor }) => (
+          <MaterialCommunityIcons
+            name="database"
+            size={26}
+            style={{ color: tintColor }}
+          />
+        ),
+      };
   state = { }
   componentWillReceiveProps(nextProps) {
     console.log('mise à jour des props');

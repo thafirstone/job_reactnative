@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Provider } from 'react-redux';
 import store from './store';
 import AuthScreen from './screens/AuthScreen';
@@ -26,7 +28,7 @@ export default class App extends React.Component {
             },
             {
               navigationOptions: {
-                tabBarVisible: false,
+                tabBarVisible: true,
               },
             }),
           },
@@ -34,6 +36,8 @@ export default class App extends React.Component {
         {
           tabBarOptions: {
             activeTintColor: 'white',
+            showIcon: true,
+            showLabel: false,
             inactiveTintColor: '#bdc3c7',
             labelStyle: {
               // fontSize: 12,
@@ -49,7 +53,7 @@ export default class App extends React.Component {
             },
 
           },
-          tabBarPosition: 'top',
+          tabBarPosition: 'bottom',
           // swipeEnabled: true,
         }
         ),

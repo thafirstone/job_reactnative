@@ -4,13 +4,22 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Fumi } from 'react-native-textinput-effects';
 
 import * as actions from '../actions';
 
 class MapScreen extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({ tintColor }) => (
+      <MaterialCommunityIcons
+        name="google-maps"
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
+  };
   state = {
     region: {
       longitude: -122,

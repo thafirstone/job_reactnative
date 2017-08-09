@@ -2,7 +2,8 @@
 import axios from 'axios';
 import reverseGeocode from 'latlng-to-zip';
 import qs from 'qs';
-import { FETCH_JOBS } from './types';
+import _ from 'lodash';
+import { FETCH_JOBS, SET_JOB_QUERY } from './types';
 
 const JOB_ROOT_URL = 'http://api.indeed.com/ads/apisearch?';
 const JOB_QUERY_PARAMS = {
@@ -14,22 +15,30 @@ const JOB_QUERY_PARAMS = {
   radius: 10,
 };
 
-const buildJobUrl = (zip) => {
+const buildJobUrl = (zip, queryDefault) => {
+  if (!_.isEmpty(queryDefault)) {
+    console.log(`la nouvelle query est: ${queryDefault}`);
+    JOB_QUERY_PARAMS.q = queryDefault;
+  }
   const query = qs.stringify({ ...JOB_QUERY_PARAMS, l: zip });
   return `${JOB_ROOT_URL}${query}`;
 };
 
-export const fetchJobs = (region) => async (dispatch) => {
-  // const result = await axios.get('');
+export const fetchJobs = (region, query, callback) => async (dispatch) => {
   try {
     const zip = await reverseGeocode(region);
     // console.log(zip);
-    const url = buildJobUrl(zip);
+    const url = buildJobUrl(zip, query);
     // console.log(url);
     const { data } = await axios.get(url);
     dispatch({ type: FETCH_JOBS, payload: data });
+    callback();
     // console.log(data);
   } catch (error) {
     console.log(error);
   }
+};
+
+export const jobQueryChange = (query) => (dispatch) => {
+  dispatch({ type: SET_JOB_QUERY, payload: query });
 };

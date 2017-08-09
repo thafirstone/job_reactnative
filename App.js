@@ -32,7 +32,24 @@ export default class App extends React.Component {
           },
         },
         {
-          // tabBarPosition: 'bottom',
+          tabBarOptions: {
+            activeTintColor: 'white',
+            inactiveTintColor: '#bdc3c7',
+            labelStyle: {
+              // fontSize: 12,
+              fontWeight: 'bold',
+              // color: 'white',
+              // textDecorationColor: 'yellow',
+            },
+            style: {
+              backgroundColor: '#009688',
+            },
+            indicatorStyle: {
+              backgroundColor: '#f1c40f',
+            },
+
+          },
+          tabBarPosition: 'top',
           // swipeEnabled: true,
         }
         ),

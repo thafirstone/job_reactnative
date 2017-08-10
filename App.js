@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import Expo, { Notifications } from 'expo';
+import { StyleSheet, Text, View, Platform, Alert } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Provider } from 'react-redux';
 import store from './store';
 import AuthScreen from './screens/AuthScreen';
@@ -11,8 +10,18 @@ import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import registerPushNotifications from './services/push_notifications';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    registerPushNotifications();
+    Notifications.addListener((notification) => {
+      const { data: { text }, origin } = notification;
+      if (origin === 'received' && text) {
+        Alert.alert('New Push Notification', text, [{ text: 'Ok.' }]);
+      }
+    });
+  }
   render() {
     const MainNavigator = TabNavigator({
       welcome: { screen: WelcomeScreen },
@@ -58,7 +67,7 @@ export default class App extends React.Component {
 
           },
           tabBarPosition: 'bottom',
-          // swipeEnabled: true,
+          swipeEnabled: false,
         }
         ),
       },

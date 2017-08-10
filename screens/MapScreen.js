@@ -1,6 +1,6 @@
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, Keyboard } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import { Button, FormLabel, FormInput } from 'react-native-elements';
@@ -40,6 +40,7 @@ class MapScreen extends Component {
   }
   onButtonPress = () => {
     this.props.fetchJobs(this.state.region, this.props.query, () => {
+      Keyboard.dismiss();
       this.props.navigation.navigate('deck');
     });
   }
@@ -56,6 +57,7 @@ class MapScreen extends Component {
         onChangeText={(text) => this.props.jobQueryChange(text)}
         autoCapitalize={'none'}
         autoCorrect={false}
+        onSubmitEditing={this.onButtonPress}
       />
     );
   }

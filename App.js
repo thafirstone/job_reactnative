@@ -14,13 +14,13 @@ import registerPushNotifications from './services/push_notifications';
 
 export default class App extends React.Component {
   componentDidMount() {
-    registerPushNotifications();
-    Notifications.addListener((notification) => {
-      const { data: { text }, origin } = notification;
-      if (origin === 'received' && text) {
-        Alert.alert('New Push Notification', text, [{ text: 'Ok.' }]);
-      }
-    });
+    // registerPushNotifications();
+    // Notifications.addListener((notification) => {
+    //   const { data: { text }, origin } = notification;
+    //   if (origin === 'received' && text) {
+    //     Alert.alert('New Push Notification', text, [{ text: 'Ok.' }]);
+    //   }
+    // });
   }
   render() {
     const MainNavigator = TabNavigator({

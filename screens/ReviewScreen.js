@@ -25,7 +25,7 @@ const renderHeaderV2 = (navigation) => (
 class ReviewScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Favorites',
-    headerRight: renderHeaderV2(navigation),
+    headerRight: renderHeaderV1(navigation),
     // headerStyle: {
     //   // marginTop: Platform.OS === 'android' ? 24 : 0,
     // },
